@@ -6,9 +6,9 @@ public class Tower : MonoBehaviour
 {
 
     public GameObject projectilePrefab;
-    public float attackPeriod = 0.5f;
+    private float attackPeriod = 0.2f;
     private float findEnemiesPeriod = 0.2f;
-    private float attackDistanceThresh = 25f;
+    private float attackDistanceThresh = 50f;
     private Vector3 attackTargetDirection;
     private GameObject attackTargetObject;
     private bool attackFlag = false;
@@ -69,7 +69,7 @@ public class Tower : MonoBehaviour
                 Projectile p = projectile.GetComponent<Projectile>();
                 p.setDirection(ref attackTargetDirection);
                 p.setSpeed(40f);
-                p.setRange(20f);
+                p.setRange(45f);
                 if (useTracking)
                 {
                     p.setTracking(true);

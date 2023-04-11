@@ -667,13 +667,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.5000002, y: -0.5000004, z: 0.49999982, w: 0.49999958}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -0, y: 82.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!1 &1152533450
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,10 +849,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputDir: D://test
   controller_prefab: {fileID: 7811445487436439100, guid: 9119e8a4496f8df41800db828a0d4ca5, type: 3}
-  targets: []
+  targets:
+  - {x: -31.954721, y: 0.875, z: 67.307205}
+  - {x: 14.889681, y: 1.1340001, z: 32.826893}
+  - {x: 17.31636, y: 1.386, z: -8.003704}
+  - {x: -26.211441, y: 1.12, z: -12.7444725}
   testPos: []
-  lengthMulti: 73
-  widthMulti: 36
+  lengthMulti: 73.16
+  widthMulti: 41.2
   commManager: {fileID: 1266989152}
   useTest: 0
   useCommManager: 0

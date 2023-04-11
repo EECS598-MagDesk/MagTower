@@ -150,7 +150,7 @@ public class InputManager : MonoBehaviour
             float y = float.Parse(parsedLine[2]);
             float z = float.Parse(parsedLine[1]);
             normalize(ref x, ref y, ref z);
-            targets.Add(new Vector3(-x, y, -z));
+            targets.Add(new Vector3(z, y, -x));
         }        
     }
 }
