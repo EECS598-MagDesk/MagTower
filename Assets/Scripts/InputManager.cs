@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     //List<GameObject> controllers;
 
     public List<Vector3> targets;
+    public List<Vector3> targetRotations;
 
     public List<Vector3> testPos = new List<Vector3>();
 
@@ -43,6 +44,7 @@ public class InputManager : MonoBehaviour
                 controllerOne.GetComponent<sliderCheck>().score_manger = score;*/
         //controllers = new List<GameObject>();
         targets = new List<Vector3>();
+        targetRotations = new List<Vector3>();
     }
 
     // Update is called once per frame
@@ -143,14 +145,21 @@ public class InputManager : MonoBehaviour
         }
         reader.Close();
         targets.Clear();
+        targetRotations.Clear();
         foreach (string line in lines) {
-            Debug.Log(line);
+            //Debug.Log(line);
             string[] parsedLine = line.Split(char.Parse(" "));
             float x = float.Parse(parsedLine[0]);
             float y = float.Parse(parsedLine[2]);
             float z = float.Parse(parsedLine[1]);
+            float r = 0;
+            if (parsedLine.Length > 3)
+            {
+                r = -float.Parse(parsedLine[3]) + 360f;
+            }
             normalize(ref x, ref y, ref z);
             targets.Add(new Vector3(z, y, -x));
+            targetRotations.Add(new Vector3(0, r, 0));
         }        
     }
 }

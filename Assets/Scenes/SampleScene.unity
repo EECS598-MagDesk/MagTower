@@ -195,8 +195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 124.56, y: -62.63}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: 332.9, y: -62.630005}
+  m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &415431426
 MonoBehaviour:
@@ -231,7 +231,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP: 0'
+  m_Text: 'HP: 000000'
 --- !u!222 &415431427
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -290,6 +290,7 @@ MonoBehaviour:
   level: 0
   enemyPrefab: {fileID: 7966815727191230696, guid: dfe3ac94a7493924bab9c955136b1351, type: 3}
   spawnPointPrefab: {fileID: 7821017587315695795, guid: e6e96d7aeeab22841ac5a9887aba438b, type: 3}
+  baseObj: {fileID: 790905873}
 --- !u!4 &540074558
 Transform:
   m_ObjectHideFlags: 0
@@ -854,6 +855,7 @@ MonoBehaviour:
   - {x: 14.889681, y: 1.1340001, z: 32.826893}
   - {x: 17.31636, y: 1.386, z: -8.003704}
   - {x: -26.211441, y: 1.12, z: -12.7444725}
+  targetRotations: []
   testPos: []
   lengthMulti: 73.16
   widthMulti: 41.2

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int hp = 3;
+    private int hp = 1;
+    public Base baseObj;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Projectile")
         {
             hp -= 1;
+            baseObj.setHP(baseObj.getHP() + 1);
             Destroy(other.gameObject);
         }
     }

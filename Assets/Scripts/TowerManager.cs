@@ -13,6 +13,7 @@ public class TowerManager : MonoBehaviour
     private float transferDistThresh = 3.5f;
     private List<GameObject> towerList = new List<GameObject>();
     private List<Vector3> targetPos = new List<Vector3>();
+    private List<Vector3> targetRot = new List<Vector3>();
     private float speed = 1000f;
 
     private float updatePeriod = 0.05f;
@@ -45,6 +46,9 @@ public class TowerManager : MonoBehaviour
         for (int i = 0; i < towerList.Count; i ++)
         {
             towerList[i].transform.position = Vector3.MoveTowards(towerList[i].transform.position, targetPos[i], speed * Time.deltaTime);
+            float angle = Mathf.MoveTowardsAngle(towerList[i].transform.eulerAngles.y, targetRot[i].y, speed * Time.deltaTime);
+            //Debug.Log(targetRot[i].y);
+            towerList[i].transform.eulerAngles = new Vector3(towerList[i].transform.eulerAngles.x, angle, towerList[i].transform.eulerAngles.z);
         }
     }
 
@@ -57,6 +61,7 @@ public class TowerManager : MonoBehaviour
             bucket[i] = -1;
         }
         List<Vector3> inputTowerList = inputManager.targets;
+        List<Vector3> inputTowerRotationList = inputManager.targetRotations;
         for (int i = 0; i < inputTowerList.Count; i++)
         {
             bool foundFlag = false;
@@ -84,18 +89,21 @@ public class TowerManager : MonoBehaviour
                 Destroy(towerList[i]);
                 towerList.RemoveAt(i);
                 targetPos.RemoveAt(i);
+                targetRot.RemoveAt(i);
             }
             else
             {
                 targetPos[i] = inputTowerList[bucket[i]];
+                targetRot[i] = inputTowerRotationList[bucket[i]];
             }
         }
         for (int i = 0; i < newTowerList.Count; i++)
         {
-            GameObject newTower = Instantiate(towerPrefab, inputTowerList[newTowerList[i]], new Quaternion(0, 0, 0, 0));
+            GameObject newTower = Instantiate(towerPrefab, inputTowerList[newTowerList[i]], Quaternion.Euler(inputTowerRotationList[newTowerList[i]]));
             Debug.Log("spawn");
             towerList.Add(newTower);
             targetPos.Add(inputTowerList[newTowerList[i]]);
+            targetRot.Add(inputTowerRotationList[newTowerList[i]]);
         }
     }
 

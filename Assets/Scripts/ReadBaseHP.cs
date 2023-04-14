@@ -17,6 +17,6 @@ public class ReadBaseHP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<Text>().text = "HP: " + baseObj.getHP().ToString();
+        gameObject.GetComponent<Text>().text = "Score: " + baseObj.getHP().ToString();
     }
 }

@@ -18,6 +18,8 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject spawnPointPrefab;
 
+    public Base baseObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +67,8 @@ public class EnemyManager : MonoBehaviour
             {
                 pos.x += Random.Range(-4f, 4f);
                 pos.z += Random.Range(-4f, 4f);
-                Instantiate(enemyPrefab, pos, new Quaternion(0f, 0f, 0f, 0f));
+                GameObject enemy = Instantiate(enemyPrefab, pos, new Quaternion(0f, 0f, 0f, 0f));
+                enemy.GetComponent<Enemy>().baseObj = baseObj;
                 yield return new WaitForSeconds(0.5f);
             }
             yield return new WaitForSeconds(levelSpawnPeriodDict[level]);
