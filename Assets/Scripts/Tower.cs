@@ -16,14 +16,32 @@ public class Tower : MonoBehaviour
     public GameObject attackRangeRing;
     public float attackRangeRingScale;
 
+    public Material towerMat;
+    public MeshRenderer towerObj;
+    public MeshRenderer cannonObj;
+
     private float initHeight = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         initHeight = transform.position.y;
+        towerObj.material = towerMat;
+        cannonObj.material = towerMat;
         StartCoroutine(findEnemies());
         StartCoroutine(attack());
+        StartCoroutine(MaterialCheckingCO());
+    }
+
+    IEnumerator MaterialCheckingCO()
+    {
+        while (true)
+        {
+            towerObj.material = towerMat;
+            cannonObj.material = towerMat;
+            yield return new WaitForSeconds(5f);
+        }
+        yield return true;
     }
 
     // Update is called once per frame
@@ -117,6 +135,7 @@ public class Tower : MonoBehaviour
             if (attackFlag)
             {
                 GameObject projectile = Instantiate(projectilePrefab, gameObject.transform.position, new Quaternion(0f, 0f, 0f, 0f));
+                projectile.GetComponent<MeshRenderer>().material = towerMat;
                 Projectile p = projectile.GetComponent<Projectile>();
                 p.setDirection(ref attackTargetDirection);
                 p.setSpeed(getCurrentProjectileSpeed());

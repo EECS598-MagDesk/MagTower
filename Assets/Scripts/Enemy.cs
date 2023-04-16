@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int hp = 1;
+    public int hp = 1;
     public Base baseObj;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.localScale = hp * transform.localScale;
     }
 
     // Update is called once per frame
@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
         if (other.tag == "Projectile")
         {
             hp -= 1;

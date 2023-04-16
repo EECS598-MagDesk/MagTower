@@ -5,7 +5,7 @@ using UnityEngine;
 public class Base : MonoBehaviour
 {
 
-    private int hp = 0;
+    public int hp = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class Base : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            hp--;
+            hp -= other.gameObject.GetComponent<Enemy>().hp;
             Destroy(other.gameObject);
         }
     }

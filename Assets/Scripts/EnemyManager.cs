@@ -6,14 +6,11 @@ public class EnemyManager : MonoBehaviour
 {
 
     public List<Vector3> spawnPos = new List<Vector3>();
-    public int level = 0;
-    private Dictionary<int, float> levelSpawnPeriodDict = new Dictionary<int, float>()
-    {
-        { 0, 0.2f },
-        { 1, 1f }
-    };
+    public float groupSpawnPeriod = 1f;
+    public int groupSpawnSize = 20;
+    public int bossLevel = 0;
 
-    private float checkPeriod = 2f;
+    private float checkPeriod = 0.5f;
 
     public GameObject enemyPrefab;
     public GameObject spawnPointPrefab;
@@ -23,6 +20,7 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawnPos.Add(new Vector3(14f, 0f, 10f));
         StartCoroutine(spawnCoroutine());
         StartCoroutine(spawnPointCoroutine());
     }
@@ -48,7 +46,7 @@ public class EnemyManager : MonoBehaviour
                 spawnPointList.Clear();
                 for (int i = 0; i < spawnPos.Count; i++)
                 {
-                    Instantiate(spawnPointPrefab, spawnPos[i], new Quaternion(0f, 0f, 0f, 0f));
+                    spawnPointList.Add(Instantiate(spawnPointPrefab, spawnPos[i], new Quaternion(0f, 0f, 0f, 0f)));
                 }
                 prevSize = spawnPos.Count;
             }
@@ -61,7 +59,15 @@ public class EnemyManager : MonoBehaviour
     {
         while (true)
         {
-            int spawnSize = Random.Range(10, 30);
+            int spawnSize = 0;
+            if (bossLevel > 0)
+            {
+                spawnSize = groupSpawnSize;
+            }
+            else
+            {
+                spawnSize = Random.Range(groupSpawnSize - 10, groupSpawnSize + 10);
+            }
             Vector3 pos = spawnPos[Random.Range(0, spawnPos.Count)];
             for (int i = 0; i < spawnSize; i++)
             {
@@ -69,9 +75,10 @@ public class EnemyManager : MonoBehaviour
                 pos.z += Random.Range(-4f, 4f);
                 GameObject enemy = Instantiate(enemyPrefab, pos, new Quaternion(0f, 0f, 0f, 0f));
                 enemy.GetComponent<Enemy>().baseObj = baseObj;
-                yield return new WaitForSeconds(0.5f);
+                enemy.GetComponent<Enemy>().hp = bossLevel + 1;
+                yield return new WaitForSeconds(groupSpawnPeriod);
             }
-            yield return new WaitForSeconds(levelSpawnPeriodDict[level]);
+            yield return new WaitForSeconds(3f);
         }
         yield return null;
     }

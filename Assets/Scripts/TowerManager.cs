@@ -21,6 +21,8 @@ public class TowerManager : MonoBehaviour
 
     public InputManager inputManager;
 
+    public List<Material> towerMats;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,7 +102,10 @@ public class TowerManager : MonoBehaviour
         for (int i = 0; i < newTowerList.Count; i++)
         {
             GameObject newTower = Instantiate(towerPrefab, inputTowerList[newTowerList[i]], Quaternion.Euler(inputTowerRotationList[newTowerList[i]]));
-            Debug.Log("spawn");
+            if (newTowerList[i] < towerMats.Count)
+            {
+                newTower.GetComponent<Tower>().towerMat = towerMats[newTowerList[i]];
+            }
             towerList.Add(newTower);
             targetPos.Add(inputTowerList[newTowerList[i]]);
             targetRot.Add(inputTowerRotationList[newTowerList[i]]);
