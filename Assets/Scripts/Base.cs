@@ -35,6 +35,13 @@ public class Base : MonoBehaviour
 
     public void setHP(int hp_input)
     {
-        hp = hp_input;
+        if (hp_input < 0)
+        {
+            hp = 0;
+        }
+        else
+        {
+            hp = hp_input;
+        }
     }
 }

@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public float groupSpawnPeriod = 1f;
     public int groupSpawnSize = 20;
     public int bossLevel = 0;
+    private bool levelChangeFlag = false;
 
     private float checkPeriod = 0.5f;
 
@@ -49,6 +50,7 @@ public class EnemyManager : MonoBehaviour
                     spawnPointList.Add(Instantiate(spawnPointPrefab, spawnPos[i], new Quaternion(0f, 0f, 0f, 0f)));
                 }
                 prevSize = spawnPos.Count;
+                levelChangeFlag = true;
             }
             yield return new WaitForSeconds(checkPeriod);
         }
@@ -75,10 +77,19 @@ public class EnemyManager : MonoBehaviour
                 pos.z += Random.Range(-4f, 4f);
                 GameObject enemy = Instantiate(enemyPrefab, pos, new Quaternion(0f, 0f, 0f, 0f));
                 enemy.GetComponent<Enemy>().baseObj = baseObj;
-                enemy.GetComponent<Enemy>().hp = bossLevel + 1;
-                yield return new WaitForSeconds(groupSpawnPeriod);
+                enemy.GetComponent<Enemy>().hp = Random.RandomRange(1, bossLevel + 2);
+                if (levelChangeFlag)
+                {
+                    levelChangeFlag = false;
+                    break;
+                }
+                else
+                {
+                    yield return new WaitForSeconds(groupSpawnPeriod);
+                }
+                
             }
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(0.2f);
         }
         yield return null;
     }

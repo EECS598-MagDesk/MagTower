@@ -23,8 +23,8 @@ public class LevelManager : MonoBehaviour
         LevelInfo l0 = new LevelInfo();
         l0.spawnPos = new List<Vector3>(
             new Vector3[] {
-                new Vector3(14f, 0f, 10f),
-                new Vector3(-14f, 0f, 10f),
+                new Vector3(0f, 0f, 50f),
+                new Vector3(0f, 0f, -50f),
             }
         );
         l0.groupSpawnPeriod = 1f;
@@ -35,39 +35,45 @@ public class LevelManager : MonoBehaviour
         LevelInfo l1 = new LevelInfo();
         l1.spawnPos = new List<Vector3>(
             new Vector3[] { 
-                new Vector3(-14f, 0f, -10f),
-                new Vector3(14f, 0f, 10f),
-                new Vector3(-14f, 0f, 10f),
+                new Vector3(35f, 0f, 40f),
+                new Vector3(15f, 0f, 50f),
+                new Vector3(25f, 0f, 30f),
             }
         );
-        l1.groupSpawnPeriod = 0.5f;
-        l1.groupSpawnSize = 30;
+        l1.groupSpawnPeriod = 0.3f;
+        l1.groupSpawnSize = 50;
         l1.bossLevel = 0;
         levels.Add(l1);
 
         LevelInfo l2 = new LevelInfo();
         l2.spawnPos = new List<Vector3>(
             new Vector3[] {
-                new Vector3(-14f, 0f, 10f),
-                new Vector3(14f, 0f, -10f),
+                new Vector3(-25f, 0f, 60f),
+                new Vector3(25f, 0f, -60f),
+                new Vector3(-25f, 0f, -60f),
+                new Vector3(25f, 0f, 60f),
+                new Vector3(8f, 0f, 60f),
             }
         );
-        l2.groupSpawnPeriod = 0.2f;
-        l2.groupSpawnSize = 60;
+        l2.groupSpawnPeriod = 0.1f;
+        l2.groupSpawnSize = 20;
         l2.bossLevel = 0;
         levels.Add(l2);
 
         LevelInfo l3 = new LevelInfo();
         l3.spawnPos = new List<Vector3>(
             new Vector3[] {
-                new Vector3(14f, 0f, -10f),
-                new Vector3(14f, 0f, -19f),
-                new Vector3(-14f, 0f, 10f),
+                new Vector3(24f, 0f, -60f),
+                new Vector3(20f, 0f, -50f),
+                new Vector3(15f, 0f, -40f),
+                new Vector3(-24f, 0f, -60f),
+                new Vector3(-20f, 0f, -50f),
+                new Vector3(-15f, 0f, -40f),
             }
         );
         l3.groupSpawnPeriod = 1f;
-        l3.groupSpawnSize = 20;
-        l3.bossLevel = 1;
+        l3.groupSpawnSize = 30;
+        l3.bossLevel = 2;
         levels.Add(l3);
 
         LevelInfo l4 = new LevelInfo();
@@ -80,8 +86,8 @@ public class LevelManager : MonoBehaviour
             }
         );
         l4.groupSpawnPeriod = 1f;
-        l4.groupSpawnSize = 30;
-        l4.bossLevel = 3;
+        l4.groupSpawnSize = 20;
+        l4.bossLevel = 5;
         levels.Add(l4);
     }
 
@@ -100,22 +106,22 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (baseObj.getHP() < 20)
+        if (baseObj.getHP() < 100)
         {
             SetLevel(1);
             currentLevel = 1;
         }
-        else if (baseObj.getHP() < 100)
+        else if (baseObj.getHP() < 250)
         {
             SetLevel(2);
             currentLevel = 2;
         }
-        else if (baseObj.getHP() < 200)
+        else if (baseObj.getHP() < 400)
         {
             SetLevel(3);
             currentLevel = 3;
         }
-        else if (baseObj.getHP() < 300)
+        else if (baseObj.getHP() < 500)
         {
             SetLevel(4);
             currentLevel = 4;

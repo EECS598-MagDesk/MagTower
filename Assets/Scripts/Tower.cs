@@ -91,7 +91,7 @@ public class Tower : MonoBehaviour
 
     float getCurrentProjectileSpeed()
     {
-        float speed = 30f - (transform.position.y) * 2;
+        float speed = 30f - (transform.position.y);
         if (speed > 10)
         {
             return speed;
@@ -117,7 +117,7 @@ public class Tower : MonoBehaviour
 
     float getCurrentAttackPeriod()
     {
-        float speed = 0.05f + (transform.position.y) * 0.1f;
+        float speed = 0.05f + (transform.position.y) * 0.05f;
         if (speed > 1)
         {
             return 1;
