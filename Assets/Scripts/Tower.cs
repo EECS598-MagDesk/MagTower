@@ -104,7 +104,7 @@ public class Tower : MonoBehaviour
 
     float getCurrentProjectileRange()
     {
-        float range = 10f + (transform.position.y) * 10;
+        float range = 10f + (transform.position.y) * 6;
         if (range > 60)
         {
             return 60;
@@ -117,7 +117,7 @@ public class Tower : MonoBehaviour
 
     float getCurrentAttackPeriod()
     {
-        float speed = 0.05f + (transform.position.y) * 0.05f;
+        float speed = 0.05f + (transform.position.y) * 0.1f;
         if (speed > 1)
         {
             return 1;
