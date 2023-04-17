@@ -10,7 +10,19 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //StartCoroutine(ScaleChangeCo());
         transform.localScale = hp * transform.localScale;
+    }
+
+    IEnumerator ScaleChangeCo()
+    {
+        transform.localScale = hp * transform.localScale;
+        while (true)
+        {
+            
+            yield return new WaitForSeconds(1f);
+        }
+        yield return null;
     }
 
     // Update is called once per frame
@@ -20,6 +32,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)
